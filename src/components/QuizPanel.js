@@ -33,13 +33,12 @@ function QuizPanel(props) {
     for (let i = 1; i < quizBox.length; i++) {
       const row = quizBox[i];
 
-      const label = row.querySelectorAll("label")[0];
       const input = row.querySelectorAll("input")[0];
       const output = row.querySelectorAll("strong")[0];
       const answer = rowMapping[output.id];
 
       output.textContent = answer;
-      output.className = getClassName(answer, input.value, label.textContent, props.ignoreFuAnswer);
+      output.className = getClassName(answer, input.value, output.id, props.ignoreFuAnswer);
       input.disabled = true;
     }
   }
@@ -76,8 +75,8 @@ function QuizPanel(props) {
           <tbody>
             <tr>
               <th></th>
-              <th className="unselectable">Your Answer</th>
-              <th className="unselectable">Real Answer</th>
+              <th className="unselectable">{t('quiz.yourAnswer')}</th>
+              <th className="unselectable">{t('quiz.realAnswer')}</th>
             </tr>
             {generateHanAndFuQuiz(
               props.options.testHan,
@@ -98,8 +97,7 @@ function QuizPanel(props) {
               !(props.options.testHan || props.options.testFu || props.options.testPoints) && (
                 <tr>
                   <td colSpan="3" className="noQuizOptions">
-                      No Test options selected. Please select at least one
-                      option in the Options menu.
+                      {t('quiz.noOptionsSelected')}
                   </td>
                 </tr>
               )
@@ -126,9 +124,9 @@ function QuizPanel(props) {
   );
 }
 
-function getClassName(agariValue, answerValue, label, ignoreFuAnswer) {
+function getClassName(agariValue, answerValue, outputId, ignoreFuAnswer) {
   // if we ignore Fu on limit hands, and it is a hand above 4 han, we want to ignore the Fu answer
-  if (label === "Fu" && ignoreFuAnswer) {
+  if (outputId === "fuAnswer" && ignoreFuAnswer) {
     return "ignoredAnswer answerText unselectable";
   }
   const stringAgari = agariValue.toString();
@@ -253,7 +251,7 @@ function generatePointsQuiz(
   if (isTsumo && isDealer) {
     pointQuizRows.push(
       <GenerateRow
-        label={[t('quiz.pointsFromEach')]}
+        label={t('quiz.pointsFromEach')}
         inputId="pointsBox"
         outputId="pointsAnswer"
         name="points"
@@ -266,14 +264,14 @@ function generatePointsQuiz(
     pointQuizRows.push(
       <>
         <GenerateRow
-          label={[t('quiz.pointsFromNonDealer')]}
+          label={t('quiz.pointsFromNonDealer')}
           inputId="pointsBox"
           outputId="pointsAnswer"
           name="points"
           tooltipContent={pointsCalculations}
         />
         <GenerateRow
-          label={[t('quiz.pointsFromDealer')]}
+          label={t('quiz.pointsFromDealer')}
           inputId="pointsBoxDealer"
           outputId="pointsAnswerDealer"
           name="pointsDealer"

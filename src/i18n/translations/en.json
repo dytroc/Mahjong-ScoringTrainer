@@ -14,7 +14,10 @@
     "points": "Points",
     "pointsFromEach": "Points (from each)",
     "pointsFromNonDealer": "Points (from non-dealer)",
-    "pointsFromDealer": "Points (from dealer)"
+    "pointsFromDealer": "Points (from dealer)",
+    "yourAnswer": "Your Answer",
+    "realAnswer": "Real Answer",
+    "noOptionsSelected": "No Test options selected. Please select at least one option in the Options menu."
   },
   "info": {
     "round": "Round",

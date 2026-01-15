@@ -105,9 +105,10 @@ function OptionsMenu(props) {
       />
       <br />
       <div className="menuOption small" style={{marginTop:'10px'}}>
-        <Label>{t('options.language')}</Label>
+        <Label htmlFor="languageSelect">{t('options.language')}</Label>
         <Input
           type="select"
+          id="languageSelect"
           value={currentLanguage}
           onChange={(e) => changeLanguage(e.target.value)}
           style={{ marginLeft: '10px', display: 'inline-block', width: 'auto' }}

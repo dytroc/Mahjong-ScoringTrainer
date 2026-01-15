@@ -3,12 +3,14 @@ import MarkdownView, { GlobalConfiguration } from 'react-showdown';
 
 import 'showdown-katex';
 import { useTranslation } from '../i18n/I18nContext';
+// Pre-import markdown files to ensure bundlers include them reliably
+import scoringEn from '../helpPages/scoring.en.md';
+import scoringJa from '../helpPages/scoring.ja.md';
 
 require('../extensions/MarkdownTiles.js');
 
 const showdownKatex = GlobalConfiguration.getExtension('showdownKatex')[0];
 const markdownTiles = GlobalConfiguration.getExtension('markdowntiles')[0];
-
 
 function HelpPanel(props) {
   const { currentLanguage } = useTranslation();
@@ -20,27 +22,23 @@ function HelpPanel(props) {
   const [mdContent, setMdContent] = useState('');
 
   useEffect(() => {
-    // Try to load language-specific help file, fall back to English if not found
-    const tryLoadHelpFile = async () => {
+    const mdMap = {
+      en: scoringEn,
+      ja: scoringJa,
+    };
+
+    const loadHelpFile = async () => {
       try {
-        const mdFilePath = require(`../helpPages/scoring.${currentLanguage}.md`);
+        const mdFilePath = mdMap[currentLanguage] || mdMap.en;
         const response = await fetch(mdFilePath);
         const text = await response.text();
         setMdContent(text);
       } catch (error) {
-        // Fall back to English if language-specific file doesn't exist
-        try {
-          const mdFilePath = require('../helpPages/scoring.en.md');
-          const response = await fetch(mdFilePath);
-          const text = await response.text();
-          setMdContent(text);
-        } catch (fallbackError) {
-          console.error('Error loading help file:', fallbackError);
-        }
+        console.error('Error loading help file:', error);
       }
     };
 
-    tryLoadHelpFile();
+    loadHelpFile();
   }, [currentLanguage]);
 
   var elementExists = document.getElementById("mySidenav");

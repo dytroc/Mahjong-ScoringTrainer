@@ -14,7 +14,10 @@
     "points": "点数",
     "pointsFromEach": "点数（各）",
     "pointsFromNonDealer": "点数（子から）",
-    "pointsFromDealer": "点数（親から）"
+    "pointsFromDealer": "点数（親から）",
+    "yourAnswer": "あなたの回答",
+    "realAnswer": "正解",
+    "noOptionsSelected": "テストオプションが選択されていません。オプションメニューで少なくとも一つ選択してください。"
   },
   "info": {
     "round": "場",
@@ -33,7 +36,7 @@
     "testPoints": "点数をテスト",
     "kiriageMangan": "切り上げ満貫モード",
     "testHonba": "本場棒を含む",
-    "ignoreFuOnLimit": "役満で符を無視",    
+    "ignoreFuOnLimit": "役満で符を無視",
     "language": "言語"
   },
   "winRate": {
