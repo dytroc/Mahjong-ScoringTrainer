@@ -182,16 +182,16 @@ function GenerateRow(props) {
   return rowData;
 }
 
-function formatFuList(agari, ignoreFuAnswer) {
+function formatFuList(agari, ignoreFuAnswer, t) {
   const output = [];
   output.push(<p></p>);
   if (ignoreFuAnswer) {
     output.push(<p style={{ color: "white" }}>Set to ignore Fu on limit hands</p>);
   }
   agari.fu_details.forEach((line) => {
-    var reason = capitalizeFirstLetter(line.reason.replaceAll("_", " "));
+    var reason = t(`fuDetails.${line.reason}`, capitalizeFirstLetter(line.reason.replaceAll("_", " ")));
     var fuValue = line.fu;
-    output.push(<p>{reason + ": " + fuValue + " fu"}</p>);
+    output.push(<p>{reason + ": " + fuValue + " " + t("quiz.fu").toLowerCase()}</p>);
   });
   return output;
 }
@@ -228,7 +228,7 @@ function generateHanAndFuQuiz(isHanQuiz, isFuQuiz, agari, ignoreFuAnswer, t) {
         inputId="fuBox"
         outputId="fuAnswer"
         name="fu"
-        tooltipContent={formatFuList(agari, ignoreFuAnswer)}
+        tooltipContent={formatFuList(agari, ignoreFuAnswer, t)}
       />
     );
   }

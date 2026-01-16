@@ -46,5 +46,24 @@
   },
   "footer": {
     "logIssues": "Log issues on"
+  },
+  "fuDetails": {
+    "base": "Base",
+    "closed_kan": "Closed Kan",
+    "closed_pon": "Closed Pon",
+    "closed_terminal_kan": "Closed Terminal Kan",
+    "closed_terminal_pon": "Closed Terminal Pon",
+    "double_valued_pair": "Double Valued Pair",
+    "hand_without_fu": "Hand Without Fu",
+    "kanchan": "Closed Wait",
+    "open_kan": "Open Kan",
+    "open_pon": "Open Pon",
+    "open_terminal_kan": "Open Terminal Kan",
+    "open_terminal_pon": "Open Terminal Pon",
+    "pair_wait": "Pair Wait",
+    "penchan": "Edge Wait",
+    "rounding": "Rounding",
+    "tsumo": "Tsumo",
+    "valued_pair": "Valued Pair"
   }
 }

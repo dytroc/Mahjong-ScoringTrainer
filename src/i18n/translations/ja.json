@@ -46,5 +46,24 @@
   },
   "footer": {
     "logIssues": "問題を報告"
+  },
+  "fuDetails": {
+    "base": "副底",
+    "closed_kan": "暗槓",
+    "closed_pon": "暗刻",
+    "closed_terminal_kan": "暗槓（么九牌）",
+    "closed_terminal_pon": "暗刻（么九牌）",
+    "double_valued_pair": "連風牌の雀頭",
+    "hand_without_fu": "符なし",
+    "kanchan": "嵌張待ち",
+    "open_kan": "明槓",
+    "open_pon": "明刻",
+    "open_terminal_kan": "明槓（么九牌）",
+    "open_terminal_pon": "明刻（么九牌）",
+    "pair_wait": "単騎待ち",
+    "penchan": "辺張待ち",
+    "rounding": "切り上げ",
+    "tsumo": "門前自摸",
+    "valued_pair": "役牌の雀頭"
   }
 }
