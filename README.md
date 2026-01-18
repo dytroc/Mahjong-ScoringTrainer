@@ -17,14 +17,10 @@ This site supports multiple languages! Currently available:
 
 Want to help translate the site into another language? Check out the [Translation Guide](TRANSLATION_GUIDE.md) for detailed instructions on how to contribute translations.
 
-## Disclaimer
-
-Please don't look too closely at the code in this repo, it might hurt your soul. This is my first React project and I have mixed feelings about how well I did. 
-
 
 ## Contributions
 
-Happy for you to message me if you really want to contribute to / chat about this project but it's a bit of a mess so I'm not sure why you would! 
+Happy for you to open an issue if you really want to contribute to / chat about this project! But this was my first React project so it might be a bit painful to some.
 Feel free to contribute through issues / feature requests to keep me busy :)
 
 ## Thanks to 

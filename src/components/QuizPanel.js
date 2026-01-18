@@ -12,7 +12,7 @@ function QuizPanel(props) {
   const isTsumo = agari.isTsumo;
   const isDealer = agari.isDealer;
 
-  const pointCalculations = calculatePoints(agari, options);
+  const pointCalculations = calculatePoints(agari, options, t);
 
   const pointsCalcSteps = pointCalculations.calculationSteps;
   const pointsCalcStepsDealer = pointCalculations.pointsCalculationsDealer;
@@ -196,12 +196,12 @@ function formatFuList(agari, ignoreFuAnswer, t) {
   return output;
 }
 
-function formatHanList(agari) {
+function formatHanList(agari, t) {
   const output = [];
   output.push(<p></p>);
   for (const [key, value] of Object.entries(agari.yakusAchieved)) {
     output.push(
-      <p>{YakuConversion.YakuIdToName(key) + ": " + value + " han"}</p>
+      <p>{YakuConversion.YakuIdToName(key, t) + ": " + value + " " + t("quiz.han").toLowerCase()}</p>
     );
   }
   return output;
@@ -217,7 +217,7 @@ function generateHanAndFuQuiz(isHanQuiz, isFuQuiz, agari, ignoreFuAnswer, t) {
         inputId="hanBox"
         outputId="hanAnswer"
         name="han"
-        tooltipContent={formatHanList(agari)}
+        tooltipContent={formatHanList(agari, t)}
       />
     );
   }
@@ -299,7 +299,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-function calculatePoints(agari, options) {
+function calculatePoints(agari, options, t) {
   //Initialise JSX array for calculation steps
   const calculationSteps = [<br />];
   var calculationStepsDealer = [<br />];
@@ -322,7 +322,7 @@ function calculatePoints(agari, options) {
 
   //Calculate base points as a function of han and fu
   //Any calculation steps are also pushed into calculationSteps which will be displayed to the user
-  calculationSteps.push(<p>{agari.han + " han"}</p>);
+  calculationSteps.push(<p>{agari.han + " " + t('pointCalculations.han')}</p>);
   switch (parseInt(agari.han)) {
     case 1:
     case 2:
@@ -332,10 +332,10 @@ function calculatePoints(agari, options) {
         parseInt(agari.fu) * Math.pow(2, 2 + parseInt(agari.han)),
         2000
       );
-      calculationSteps.push(<p>{agari.fu + " fu"}</p>);
+      calculationSteps.push(<p>{agari.fu + " " + t('pointCalculations.fu')}</p>);
       calculationSteps.push(
         <p>
-          Basic points: {agari.fu} x 2
+          {t('pointCalculations.basicPoints')}: {agari.fu} x 2
           <sup>
             {"2 + "}
             {agari.han}
@@ -348,7 +348,7 @@ function calculatePoints(agari, options) {
         </p>
       );
       if (parseInt(agari.fu) * Math.pow(2, 2 + parseInt(agari.han)) > 2000) {
-        calculationSteps.push(<p>[Basic Points limited at 2000]</p>);
+        calculationSteps.push(<p>{t('pointCalculations.basicPointsLimited')}</p>);
       }
 
       //KiriageMangan is a mode which rounds up points for certain han/fu values
@@ -358,7 +358,7 @@ function calculatePoints(agari, options) {
           (agari.han === 4 && agari.fu === "30")
         ) {
           basicPoints = 2000;
-          calculationSteps.push(<p>{"Kiriage Mangan: +80"}</p>);
+          calculationSteps.push(<p>{t('pointCalculations.kiriageMangan')}</p>);
         }
       }
       break;
@@ -383,21 +383,22 @@ function calculatePoints(agari, options) {
       break;
   }
 
-  calculationSteps.push(<p>{"Basic points: " + basicPoints}</p>);
+  calculationSteps.push(<p>{t('pointCalculations.basicPoints') + ": " + basicPoints}</p>);
   calculationStepsDealer = [].concat(calculationSteps);
 
   //Work out final points based on whether winner is dealer / whether it was tsumo
   pointMultiplier = getBasicPointsMultiplier(isTsumo, isDealer);
   unroundedPointValue = basicPoints * pointMultiplier;
   pointValue = Math.ceil(unroundedPointValue / 100) * 100;
-  var winTypeString = getWinTypeText(isTsumo, isDealer);
+  var winTypeString = getWinTypeText(isTsumo, isDealer, t);
 
   addCalculationSteps(
     calculationSteps,
     winTypeString,
     unroundedPointValue,
     pointMultiplier,
-    pointValue
+    pointValue,
+    t
   );
 
   if (isTsumo && !isDealer) {
@@ -405,10 +406,11 @@ function calculatePoints(agari, options) {
 
     addCalculationSteps(
       calculationStepsDealer,
-      "Tsumo (dealer)",
+      t('pointCalculations.tsumoDealer'),
       basicPoints * 2,
       2,
-      pointValueDealer
+      pointValueDealer,
+      t
     );
   }
 
@@ -417,10 +419,10 @@ function calculatePoints(agari, options) {
     pointValueDealer = pointValueDealer + honbaPointsPerPlayer;
 
     calculationSteps.push(
-      <p>{format("Honba: {} (+{})", pointValue, honbaPointsPerPlayer)}</p>
+      <p>{format(t('pointCalculations.honba'), pointValue, honbaPointsPerPlayer)}</p>
     );
     calculationStepsDealer.push(
-      <p>{format("Honba: {} (+{})", pointValueDealer, honbaPointsPerPlayer)}</p>
+      <p>{format(t('pointCalculations.honba'), pointValueDealer, honbaPointsPerPlayer)}</p>
     );
   }
 
@@ -455,18 +457,18 @@ function getBasicPointsMultiplier(isTsumo, isDealer) {
   }
 }
 
-function getWinTypeText(isTsumo, isDealer) {
+function getWinTypeText(isTsumo, isDealer, t) {
   if (isTsumo && isDealer) {
-    return "Dealer Tsumo";
+    return t('pointCalculations.dealerTsumo');
   }
   if (!isTsumo && !isDealer) {
-    return "Ron (non-dealer)";
+    return t('pointCalculations.ronNonDealer');
   }
   if (!isTsumo && isDealer) {
-    return "Dealer Ron";
+    return t('pointCalculations.dealerRon');
   }
   if (isTsumo && !isDealer) {
-    return "Tsumo (non-dealer)";
+    return t('pointCalculations.tsumoNonDealer');
   }
 }
 
@@ -483,7 +485,8 @@ function addCalculationSteps(
   winTypeString,
   unroundedPointValue,
   pointMultiplier,
-  pointValue
+  pointValue,
+  t
 ) {
   calculationSteps.push(
     <p>
@@ -500,7 +503,7 @@ function addCalculationSteps(
     calculationSteps.push(
       <p>
         {format(
-          "Round up: {} (+{})",
+          t('pointCalculations.roundUp'),
           pointValue,
           pointValue - unroundedPointValue
         )}
