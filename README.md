@@ -1,9 +1,8 @@
 # Riichi Mahjong Score Trainer
 
-## Description
+A web application to help people practice scoring in Riichi Mahjong. All winning hands are taken from Tenhou logs using the python scripts in [https://github.com/Varantha/Mahjong-LogParser](https://github.com/Varantha/Mahjong-LogParser)
 
-A little program I made to help people practice scoring in Riichi Mahjong. All winning hands are taken from Tenhou logs using the python scripts in [https://github.com/Varantha/Mahjong-LogParser](https://github.com/Varantha/Mahjong-LogParser)
-
+<img src="scoring-trainer.png" alt="Scoring Trainer Screenshot" width="70%" />
 
 ## Site URL
 
@@ -20,31 +19,18 @@ Want to help translate the site into another language? Check out the [Translatio
 
 ## Contributions
 
-Happy for you to open an issue if you really want to contribute to / chat about this project! But this was my first React project so it might be a bit painful to some.
-Feel free to contribute through issues / feature requests to keep me busy :)
+Contributions are welcome! Feel free to open an issue or submit a pull request if you'd like to improve the project or suggest new features.
 
-## Thanks to 
+## Thanks to
+
 Work was inspired / made possible by the following people:
-```
-Euophrys
-https://github.com/Euophrys/
 
-ApplySci
-https://github.com/ApplySci
+<a href="https://github.com/Euophrys"><img src="https://github.com/Euophrys.png?size=50" width="50" height="50" alt="Euophrys" style="border-radius: 50%;" /></a>
+<a href="https://github.com/ApplySci"><img src="https://github.com/ApplySci.png?size=50" width="50" height="50" alt="ApplySci" style="border-radius: 50%;" /></a>
+<a href="https://github.com/MahjongRepository"><img src="https://github.com/MahjongRepository.png?size=50" width="50" height="50" alt="MahjongRepository" style="border-radius: 50%;" /></a>
+<a href="https://github.com/NegativeMjark"><img src="https://github.com/NegativeMjark.png?size=50" width="50" height="50" alt="NegativeMjark" style="border-radius: 50%;" /></a>
+<a href="https://github.com/FluffyStuff"><img src="https://github.com/FluffyStuff.png?size=50" width="50" height="50" alt="FluffyStuff" style="border-radius: 50%;" /></a>
+<a href="https://github.com/Elthron"><img src="https://github.com/Elthron.png?size=50" width="50" height="50" alt="Elthron" style="border-radius: 50%;" /></a>
+<a href="https://github.com/fathoms"><img src="https://github.com/fathoms.png?size=50" width="50" height="50" alt="fathoms" style="border-radius: 50%;" /></a>
 
-Nihisil
-https://github.com/MahjongRepository/mahjong
-
-NegativeMjark
-https://github.com/NegativeMjark/
-
-FluffyStuff
-https://github.com/FluffyStuff/riichi-mahjong-tiles
-
-Elthron
-https://github.com/Elthron
-
-Fathoms
-https://github.com/fathoms
-```
-
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
