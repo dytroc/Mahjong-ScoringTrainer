@@ -6,7 +6,7 @@
   },
   "buttons": {
     "checkAnswer": "정답 확인",
-    "newHand": "새로운 패"
+    "newHand": "새 손패"
   },
   "quiz": {
     "han": "판수",
@@ -36,7 +36,7 @@
     "testPoints": "점수 계산 연습",
     "kiriageMangan": "절상만관 채용",
     "testHonba": "장봉 포함",
-    "ignoreFuOnLimit": "만관 이상, 부수 무시",
+    "ignoreFuOnLimit": "5판 이상 부수 무시",
     "language": "언어"
   },
   "winRate": {
